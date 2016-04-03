@@ -16,9 +16,32 @@ class VagrantNoRequireTTY::Plugin < Vagrant.plugin(2)
 
     # For RSync.
     hook.after(Vagrant::Action::Builtin::SyncedFolders, action)
-    # For everything else.
-    # For great justice.
   end
+
+  # For everything else.
+  action_hook('Disable requiretty on shutdown', :machine_action_halt) do |hook|
+    require_relative 'action'
+    action = VagrantNoRequireTTY::Action
+
+    hook.prepend(action)
+  end
+
+  action_hook('Disable requiretty on reload', :machine_action_reload) do |hook|
+    require_relative 'action'
+    action = VagrantNoRequireTTY::Action
+
+    hook.prepend(action)
+  end
+
+  action_hook('Disable requiretty on destroy', :machine_action_destroy) do |hook|
+    require_relative 'action'
+    action = VagrantNoRequireTTY::Action
+
+    hook.prepend(action)
+  end
+
+  # For great justice.
+
 
   [:linux].each do |os|
     guest_capability(os, :norequiretty) do
