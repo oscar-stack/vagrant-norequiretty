@@ -26,7 +26,11 @@ module VagrantNoRequireTTY
     end
 
     def supports_requiretty?(machine)
-      machine.communicate.ready? && machine.guest.capability?(:norequiretty)
+      # Some versions of the OpenStack provider crash if
+      # machine.communicate.ready? is called before the machine is created.
+      (machine.state.id != :not_created) &&
+      machine.communicate.ready? &&
+      machine.guest.capability?(:norequiretty)
     rescue Vagrant::Errors::VagrantError
       # WinRM will raise an error if the VM isn't running instead of
       # returning false.

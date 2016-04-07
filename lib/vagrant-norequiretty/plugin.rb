@@ -16,6 +16,9 @@ class VagrantNoRequireTTY::Plugin < Vagrant.plugin(2)
 
     # For RSync.
     hook.after(Vagrant::Action::Builtin::SyncedFolders, action)
+    if defined? VagrantPlugins::Openstack::Action::SyncFolders
+      hook.after(VagrantPlugins::Openstack::Action::SyncFolders, action)
+    end
   end
 
   # For everything else.
