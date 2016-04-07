@@ -45,8 +45,9 @@ clear. For many cases,
 >
 > I see no pros.  Do you?
 
-This Vagrant plugin hooks into startup actions for VirtualBox, vSphere and
-VMware Desktop providers and runs a `sed` command to purge the `requiretty`
-setting before provisioners, synced folders and networking actions are executed.
+This Vagrant plugin hooks into startup actions for VirtualBox, vSphere, VMware
+Desktop, and OpenStack providers by running a `sed` command to purge the
+`requiretty` setting from `/etc/sudoers` before provisioners, synced folders
+and networking actions are executed.
 
 Support for additional providers coming soon.
