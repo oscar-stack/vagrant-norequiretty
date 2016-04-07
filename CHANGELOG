@@ -1,6 +1,17 @@
 CHANGELOG
 =========
 
+0.0.3
+-----
+
+2016-04-06
+
+This is a backwards compatible feature release.
+
+  * (GH-2) Add support for vagrant-openstack-provider and
+    vagrant-openstack-plugin.
+
+
 0.0.2
 -----
 
