@@ -14,10 +14,15 @@ class VagrantNoRequireTTY::Plugin < Vagrant.plugin(2)
     require_relative 'action'
     action = VagrantNoRequireTTY::Action
 
-    # For RSync.
+    # For RSync and provisioners.
     hook.after(Vagrant::Action::Builtin::SyncedFolders, action)
+    # For vagrant-openstack-provider
     if defined? VagrantPlugins::Openstack::Action::SyncFolders
       hook.after(VagrantPlugins::Openstack::Action::SyncFolders, action)
+    end
+    # For vagrant-openstack-plugin
+    if defined? VagrantPlugins::OpenStack::Action::CreateNetworkInterfaces
+      hook.before(VagrantPlugins::OpenStack::Action::CreateNetworkInterfaces, action)
     end
   end
 
