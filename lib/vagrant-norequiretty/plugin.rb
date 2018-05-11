@@ -14,7 +14,12 @@ class VagrantNoRequireTTY::Plugin < Vagrant.plugin(2)
     require_relative 'action'
     action = VagrantNoRequireTTY::Action
 
-    # For RSync and provisioners.
+    # For RSync and other folder syncing actions. Most providers run these
+    # before any provisioners. We hook after instead of before as the folder
+    # syncing sets up some logic and then calls down the action chain to boot
+    # the VM before executing the shell commands in the sync. Hooking after
+    # ensures that we are the last action before the chained call returns and
+    # the shell commands are executed.
     hook.after(Vagrant::Action::Builtin::SyncedFolders, action)
     # For vagrant-openstack-provider
     if defined? VagrantPlugins::Openstack::Action::SyncFolders
