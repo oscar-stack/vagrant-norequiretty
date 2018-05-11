@@ -6,6 +6,7 @@ vagrant_version = nil
 
 group :plugins do
   gemspec
+  gem 'vagrant-openstack-provider',             '~> 0.12.0'
 end
 
 group :test do

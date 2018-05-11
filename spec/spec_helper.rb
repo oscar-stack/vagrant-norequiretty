@@ -12,3 +12,6 @@ require 'vagrant/plugin/v2/plugin'
 
 require 'vagrant-norequiretty'
 require 'vagrant-norequiretty/action'
+
+require 'vagrant-openstack-provider'
+require 'vagrant-openstack-provider/action/sync_folders'
