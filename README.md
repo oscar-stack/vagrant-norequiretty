@@ -1,6 +1,8 @@
 vagrant-norequiretty
 ====================
 
+[![Build Status](https://travis-ci.org/oscar-stack/vagrant-norequiretty.svg?branch=master)](https://travis-ci.org/oscar-stack/vagrant-norequiretty)
+
 A Vagrant plugin that disables `requiretty` on Linux guests. We've all seen it
 before. The dreaded "you must have a tty to run sudo" error:
 
