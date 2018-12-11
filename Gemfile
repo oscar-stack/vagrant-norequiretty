@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 require 'rubygems/version'
 
-vagrant_branch = ENV['TEST_VAGRANT_VERSION'] || 'v2.1.2'
+vagrant_branch = ENV['TEST_VAGRANT_VERSION'] || 'v2.2.2'
 vagrant_version = nil
 
 group :plugins do
@@ -25,6 +25,7 @@ group :test do
     gem 'vagrant-spec', :git => 'https://github.com/hashicorp/vagrant-spec.git',
       :ref => '9413ab2'
   end
+  gem 'rake'
 end
 
 eval_gemfile "#{__FILE__}.local" if File.exists? "#{__FILE__}.local"
